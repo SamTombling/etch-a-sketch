@@ -15,18 +15,36 @@ function drawGrid(numOfCells) {
     for (let j = 0; j < numOfCells; j++) {
         let square = document.createElement('div')
         square.classList.add("square");
+        square.setAttribute('ondragstart', 'return false');
+        square.setAttribute('ondrop', 'return false');
         column.appendChild(square);}    
     }
 
     const cells = document.querySelectorAll('.square');
 
     cells.forEach((cell) => {
-        cell.addEventListener('mouseenter', () => {
+        cell.addEventListener('mousedown', () => {
             cell.classList.add("active");
-        });
+            clicked = true
+        });   
+    });
+
+    cells.forEach((cell) => {
+        cell.addEventListener('mouseenter', () => {
+            if (clicked == true) {
+                cell.classList.add("active");
+            }              
+        });  
+    });
+
+    cells.forEach((cell) => {
+        cell.addEventListener('mouseup', () => {
+            clicked = false;             
+        });  
     });
 }
 
+let clicked = false
 const button = document.querySelector('button');
 let numOfCells = 10;
 drawGrid(numOfCells);
