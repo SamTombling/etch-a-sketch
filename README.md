@@ -1,14 +1,10 @@
 # etch-a-sketch
 
 ## Description
----
-
 A project created as part of The Odin Project. The Etch-a-Sketch allows a user to draw onscreen by clicking and dragging inside the canvas.
 The size of each cell in the grid can also be changed using a slider.
 
 ## Features to Add
----
-
 + Colour Picker
 + Eraser
 + Colour Randomiser
