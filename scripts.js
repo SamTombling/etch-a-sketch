@@ -22,14 +22,13 @@ function drawGrid(numOfCells) {
 
     cells.forEach((cell) => {
         cell.addEventListener('mouseenter', () => {
-            console.log('hover');
             cell.classList.add("active");
         });
     });
 }
 
 const button = document.querySelector('button');
-let numOfCells = 64;
+let numOfCells = 10;
 drawGrid(numOfCells);
 button.addEventListener('click', () => {
     numOfCells = parseInt(prompt('Enter a number between 1 and 100'));
