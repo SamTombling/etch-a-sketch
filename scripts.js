@@ -15,8 +15,11 @@ function drawGrid(numOfCells) {
     for (let j = 0; j < numOfCells; j++) {
         let square = document.createElement('div')
         square.classList.add("square");
+
+        // Cells were created draggable which would cause issues if the user clicked on the very edge of a square, so this was removed
         square.setAttribute('ondragstart', 'return false');
         square.setAttribute('ondrop', 'return false');
+
         column.appendChild(square);}    
     }
 
@@ -37,6 +40,7 @@ function drawGrid(numOfCells) {
         });  
     });
 
+    // When the mouse is let go, dragging over a cell will no longer activate it
     cells.forEach((cell) => {
         cell.addEventListener('mouseup', () => {
             clicked = false;             
@@ -44,15 +48,21 @@ function drawGrid(numOfCells) {
     });
 }
 
-let clicked = false
+let clicked = false // When a cell is clicked, all other cells will become active if the mouse is moved over them. This allows the user to click and drag to draw
+
 const button = document.querySelector('button');
-let numOfCells = 10;
-drawGrid(numOfCells);
-button.addEventListener('click', () => {
-    numOfCells = parseInt(prompt('Enter a number between 1 and 100'));
-    if (numOfCells > 1 && numOfCells <= 100){
-        drawGrid(numOfCells);
-    } else {
-        alert("Cell size must be between 1 and 100!")
-    }    
-});
+let numOfCells = 25;
+drawGrid(numOfCells); // Draws initial 25x25 grid
+let slider = document.getElementById("myRange");
+let output = document.querySelector(".output");
+
+
+
+slider.oninput = function() {
+    numOfCells = this.value;
+    output.textContent = this.value + "x" + this.value;    
+}
+
+slider.onmouseup = function() {
+    drawGrid(numOfCells);
+}
